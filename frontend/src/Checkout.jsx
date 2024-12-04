@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CartItem from "./CartItem";
-import usePost from "./usePost";
+import Coupon from "./Coupon";
 
 const CART = [
   {
@@ -22,42 +22,11 @@ const CART = [
 const DELIVERY_FEE = 8;
 
 const Checkout = () => {
-  const [promoCode, setPromoCode] = useState("");
-  const [cart, setCart] = useState(CART);
+  const [cart] = useState(CART);
   const [discount, setDiscount] = useState({ value: 0, description: "" });
 
-  const { data: couponData, isLoading, error, post } = usePost(
-    process.env.REACT_APP_COUPON_API_URL
-  );
-
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-  const total = subtotal + DELIVERY_FEE - (discount.value || 0);
-
-  const handleApplyCoupon = () => {
-    if (promoCode) {
-      post({ code: promoCode });
-    }
-  };
-
-  const handleRemoveCoupon = () => {
-    setDiscount({ value: 0, description: "" });
-    setPromoCode("");
-  };
-
-  useEffect(() => {
-    if (couponData) {
-      const { discountType, discountValue, message } = couponData;
-
-      let calculatedDiscount = 0;
-      if (discountType === "flat") {
-        calculatedDiscount = discountValue;
-      } else if (discountType === "percentage") {
-        calculatedDiscount = subtotal * (discountValue / 100);
-      }
-
-      setDiscount({ value: calculatedDiscount, description: message });
-    }
-  }, [couponData, subtotal]);
+  const total = subtotal + DELIVERY_FEE - discount.value;
 
   return (
     <div className="checkout-container">
@@ -68,30 +37,7 @@ const Checkout = () => {
         ))}
       </div>
 
-      <div className="promo-code-container">
-        <input
-          disabled={discount.value > 0}
-          type="text"
-          placeholder="Promo code"
-          value={promoCode}
-          onChange={(e) => setPromoCode(e.target.value)}
-          className="promo-code-input"
-        />
-        <button
-          onClick={discount.value ? handleRemoveCoupon : handleApplyCoupon}
-          disabled={isLoading}
-          className="button"
-        >
-          {discount.value ? "Remove" : isLoading ? "Applying..." : "Apply"}
-        </button>
-      </div>
-
-      <div className="promo-messages">
-        {discount.description && (
-          <span className="coupon-text">{discount.description}</span>
-        )}
-        {error && <span className="invalid-coupon">{error}</span>}
-      </div>
+      <Coupon subtotal={subtotal} discount={discount} setDiscount={setDiscount} />
 
       <p>
         Subtotal <span className="right">${subtotal.toFixed(2)}</span>
