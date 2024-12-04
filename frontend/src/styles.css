@@ -1,0 +1,156 @@
+.App {
+  font-family: sans-serif;
+  /* text-align: center; */
+}
+
+img {
+  width: 50px;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+span.description {
+  color: #696969;
+}
+
+.checkout-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #696969;
+  border-radius: 5px;
+  padding: 20px 30px;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.coupon-text {
+  display: block;
+  font-style: italic;
+  margin: 5px 0;
+  color: green;
+}
+
+.invalid-coupon {
+  display: block;
+  font-style: italic;
+  margin: 5px 0;
+  color: red;
+}
+
+.right {
+  float: right;
+}
+
+/* Container for the input and button */
+.promo-code-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* Input field */
+.promo-code-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Button */
+.promo-code-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.promo-code-button:hover {
+  background-color: #0056b3;
+}
+
+.promo-code-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Messages container */
+.promo-messages {
+  display: flex;
+  flex-direction: column; /* Stack messages vertically */
+  margin-top: 5px; /* Add some spacing from the input/button */
+}
+
+/* Discount description */
+.coupon-text {
+  color: green;
+  font-size: 14px;
+}
+
+/* Error message */
+.invalid-coupon {
+  color: red;
+  font-size: 14px;
+}
+
+/* General styling for the checkout list */
+.checkout-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Image styling */
+.item-image {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+/* Details (title and description) */
+.item-details {
+  flex: 1;
+  margin-right: 15px;
+}
+
+/* Title styling */
+.item-title {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Description styling */
+.item-description {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0;
+}
+
+/* Price styling */
+.item-price {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: right;
+}

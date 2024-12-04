@@ -1,0 +1,77 @@
+# Node.js specific (backend)
+/backend/node_modules/
+# Logs
+/backend/logs
+/backend/*.log
+/backend/npm-debug.log*
+/backend/yarn-debug.log*
+/backend/yarn-error.log*
+/backend/pids
+/backend/*.pid
+/backend/*.pid.lock
+
+# Runtime data
+/backend/tmp/
+/backend/temp/
+/backend/.env
+/backend/.env.*
+
+# Coverage directory
+/backend/coverage/
+/backend/.nyc_output/
+
+# Build artifacts
+/backend/dist/
+/backend/build/
+/backend/out/
+
+# IDE/editor specific
+/backend/.idea/
+/backend/.vscode/
+/backend/*.swp
+/backend/*.swo
+
+# Debug artifacts
+/backend/debug.log
+/backend/.eslintcache
+/backend/.node_repl_history
+
+# React specific (frontend)
+/frontend/node_modules/
+
+# Build directory
+/frontend/build/
+/frontend/.cache/
+
+# Static exports
+/frontend/out/
+
+# Environment variables
+/frontend/.env
+/frontend/.env.*.local
+
+# Testing and coverage
+/frontend/.jest/
+/frontend/coverage/
+
+# Logs
+/frontend/logs/
+# Logs
+/frontend/*.log
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# IDE/editor specific
+/frontend/.idea/
+/frontend/.vscode/
+/frontend/*.swp
+/frontend/*.swo
+
+# Miscellaneous
+/frontend/.DS_Store
+
+# General files
+*.log
+*.env
+.DS_Store
