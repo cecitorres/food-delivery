@@ -1,39 +1,38 @@
 import { useState } from "react";
 
-function usePost(url) {
+function useUpdate(url) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const post = async (body) => {
+    const update = async (body) => {
+        console.log(body, 123);
         setIsLoading(true);
         setError(false);
 
         try {
-            const response = await fetch(url, {
-                method: "POST",
+            const updateUrl = `${url}/${body.id}`;
+            const response = await fetch(updateUrl + "/", {
+                method: "PUT",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(body),
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                const errorMessage = errorData?.message ||"Failed to post data";
-                throw new Error (errorMessage);
+                throw new Error ("Failed to update data");
             }
 
             const result = await response.json();
             setData(result);
             return result;
         } catch (err) {
-            setError(err.message);
+            setError(err.message)
         } finally {
             setIsLoading(false);
         }
     };
-
-    return { data, isLoading, error, post }
-
+    
+    return {data, isLoading, error, update }
 }
 
-export default usePost;
+export default useUpdate;

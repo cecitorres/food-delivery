@@ -8,6 +8,15 @@ html, body {
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  margin-top: 10px;
+}
+
 /* =====================
    Utility Classes
 ===================== */

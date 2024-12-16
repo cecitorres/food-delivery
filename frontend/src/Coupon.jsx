@@ -4,7 +4,7 @@ import usePost from "./usePost";
 const Coupon = ({ subtotal, discount, setDiscount }) => {
   const [promoCode, setPromoCode] = useState("");
   const { data: couponData, isLoading, error, post } = usePost(
-    process.env.REACT_APP_COUPON_API_URL
+    process.env.REACT_APP_COUPON_API_URL + "/validate"
   );
 
   useEffect(() => {

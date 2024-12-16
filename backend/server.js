@@ -9,6 +9,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/coupons", couponRoutes);
+
 sequelize.sync({ force: true }).then(async () => {
     const { Coupon } = require("./models/coupon");
 
@@ -20,5 +22,3 @@ sequelize.sync({ force: true }).then(async () => {
     console.log("Database synced and seeded!");
     app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 });
-
-app.use("/api/coupons", couponRoutes);

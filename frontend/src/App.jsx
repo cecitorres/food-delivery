@@ -1,24 +1,33 @@
-import "./styles.css";
-import useFetch from "./useFetch";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Checkout from "./Checkout";
+import CouponAdmin from "./Admin/CouponAdmin";
+import "./styles.css";
 
-export default function App() {
-  const { data, isLoading, error } = useFetch(
-    "https://jsonplaceholder.typicode.com/posts"
-  );
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
+const App = () => {
   return (
-    <div className="App flex-row center">
-      {/* <h1>Posts</h1>
-      <ul>
-        {data.map((post) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul> */}
-      <Checkout />
-    </div>
+      <Router>
+          <div>
+              {/* Navigation Links */}
+              <nav style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
+                  <Link to="/" style={{ textDecoration: 'none', color: 'blue' }}>
+                      Checkout Cart
+                  </Link>
+                  <Link to="/admin" style={{ textDecoration: 'none', color: 'blue' }}>
+                      Admin Panel
+                  </Link>
+              </nav>
+
+              {/* Route Configuration */}
+              <Routes>
+                  {/* Route for Checkout Cart */}
+                  <Route path="/" element={<Checkout />} />
+                  
+                  {/* Route for Admin Panel */}
+                  <Route path="/admin" element={<CouponAdmin />} />
+              </Routes>
+          </div>
+      </Router>
   );
-}
+};
+
+export default App;

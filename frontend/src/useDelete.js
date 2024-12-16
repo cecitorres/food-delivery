@@ -1,25 +1,23 @@
 import { useState } from "react";
 
-function usePost(url) {
+function useDelete(url) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const post = async (body) => {
+    const deleteItem = async (id) => {
         setIsLoading(true);
         setError(false);
 
         try {
-            const response = await fetch(url, {
-                method: "POST",
+            const deleteUrl = `${url}/${id}`;
+            const response = await fetch(deleteUrl, {
+                method: "DELETE",
                 headers: { "Content-Type": "application/json"},
-                body: JSON.stringify(body),
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                const errorMessage = errorData?.message ||"Failed to post data";
-                throw new Error (errorMessage);
+                throw new Error ("Failed to delete");
             }
 
             const result = await response.json();
@@ -32,8 +30,7 @@ function usePost(url) {
         }
     };
 
-    return { data, isLoading, error, post }
-
+    return { data, isLoading, error, deleteItem };
 }
 
-export default usePost;
+export default useDelete;
